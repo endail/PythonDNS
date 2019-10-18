@@ -67,7 +67,7 @@ args = p.parse_args()
 
 
 
-print("Starting Proxy Resolver (%s:%d -> %s:%d)" % (
+print("Starting Intercept Resolver (%s:%d -> %s:%d)" % (
     args.local_address, args.local_port,
     args.upstream_address, args.upstream_port))
 
