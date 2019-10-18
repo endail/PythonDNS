@@ -1,0 +1,35 @@
+
+# Cloak NTP Servers
+
+# ntp.org
+^www.pool.ntp.org$              www.pool.ntp.org
+^au.pool.ntp.org$               au.pool.ntp.org
+^.*.pool.ntp.org$               ntp.local
+
+# GOV and US
+^time.*.nist.gov$               ntp.local
+^ntp.*.nist.gov$                ntp.local
+^url-www.nist.gov$              ntp.local
+^ntp.*.colorado.edu$            ntp.local
+^utcnist\d*.colorado.edu$       ntp.local
+^url-time.colorado.edu$         ntp.local
+^clock.isc.org$                 ntp.local
+
+# Orgs
+^time.google.com$               ntp.local
+^time[0-9].google.com$          ntp.local
+^time.windows.com$              ntp.local
+^time.android.com$              ntp.local
+^time.apple.com$                ntp.local
+^time.euro.apple.com$           ntp.local
+^time-ios.apple.com$            ntp.local
+^time-ios.g.aaplimg.com$        ntp.local
+^ntp.ubuntu.com$                ntp.local
+^time.cloudflare.com$           ntp.local
+
+# ISP
+^t[io]c.ntp.telstra.net$        ntp.local
+
+# Misc.
+^ntp.report-uri.com$            ntp.local
+

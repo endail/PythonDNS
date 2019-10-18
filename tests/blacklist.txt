@@ -1,0 +1,4 @@
+
+# Block local domains
+\.local$
+
