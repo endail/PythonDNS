@@ -9,8 +9,8 @@ class CloakRule():
     def search(self, test):
         return bool(self.regex.search(test))
 
-    @staticmethod
-    def importRules(file):
+    @classmethod
+    def importRules(self, file):
 
         rules = []
 
@@ -28,7 +28,7 @@ class CloakRule():
                     continue
 
                 try:
-                    rule = CloakRule(re.compile(parts[0]), parts[1])
+                    rule = self(re.compile(parts[0]), parts[1])
                 except re.error:
                     continue
 
