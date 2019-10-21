@@ -8,6 +8,9 @@ from .helpers import GetDomainNameFromRequest
 
 class InterceptResolver(BaseResolver):
 
+    # 1 hour
+    DEFAULT_TTL = 3600
+
     def __init__(self, address, port, cloakfile=None, 
         blacklistFile=None, timeout=0):
 
@@ -49,7 +52,7 @@ class InterceptResolver(BaseResolver):
                         request.questions[0].qname,
                         rtype=QTYPE.A,
                         rdata=dnslib.A(rule.target),
-                        ttl=3600
+                        ttl=self.DEFAULT_TTL
                     ))
                     return reply
 
@@ -59,7 +62,7 @@ class InterceptResolver(BaseResolver):
                         request.questions[0].qname,
                         rtype=QTYPE.CNAME,
                         rdata=dnslib.CNAME(rule.target),
-                        ttl=3600
+                        ttl=self.DEFAULT_TTL
                     ))
 
                 subquery = DNSRecord.question(rule.target)
