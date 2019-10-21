@@ -2,6 +2,7 @@ import re
 
 class CloakRule():
 
+    # https://stackoverflow.com/a/25969006/570787
     IPV4_REGEX = re.compile("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$")
 
     def __init__(self, regex, target):
