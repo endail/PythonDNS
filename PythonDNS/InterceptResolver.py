@@ -42,12 +42,25 @@ class InterceptResolver(BaseResolver):
             if rule.search(domain):
 
                 reply = request.reply()
-                reply.add_answer(RR(
-                    request.questions[0].qname,
-                    rtype=QTYPE.CNAME,
-                    rdata=dnslib.CNAME(rule.target),
-                    ttl=3600
-                ))
+
+                # Return an A record if target is IPV4 address
+                if rule.targetIsIp4():
+                    reply.add_answer(RR(
+                        request.questions[0].qname,
+                        rtype=QTYPE.A,
+                        rdata=dnslib.A(rule.target),
+                        ttl=3600
+                    ))
+                    return reply
+
+                # Add a CNAME if the target domain is different
+                if domain != rule.target:
+                    reply.add_answer(RR(
+                        request.questions[0].qname,
+                        rtype=QTYPE.CNAME,
+                        rdata=dnslib.CNAME(rule.target),
+                        ttl=3600
+                    ))
 
                 subquery = DNSRecord.question(rule.target)
                 subresp = self.upstream_resolve(subquery, handler)
@@ -79,6 +92,6 @@ class InterceptResolver(BaseResolver):
         reply = self.cloak(request, handler)
 
         if reply is None:
-            return self.upstream_resolve(request, handler)
+            reply = self.upstream_resolve(request, handler)
 
         return reply

@@ -62,16 +62,24 @@ p.add_argument("-b",
     metavar="blacklist file",
     help="File path to blacklist file")
 
+p.add_argument("-d",
+    "--debug",
+    type=bool,
+    default=False,
+    nargs="?",
+    metavar="<debug>",
+    help="Enable debugging")
+
 
 args = p.parse_args()
 
 
 
-print("Starting Intercept Resolver (%s:%d -> %s:%d)" % (
+print("Starting PythonDNS (%s:%d -> %s:%d)" % (
     args.local_address, args.local_port,
     args.upstream_address, args.upstream_port))
 
-logger = DNSLogger("-request,-reply")
+logger = DNSLogger("+request,+reply,+data")
 
 resolver = InterceptResolver(
     args.upstream_address,

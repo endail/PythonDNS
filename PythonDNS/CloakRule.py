@@ -2,12 +2,17 @@ import re
 
 class CloakRule():
 
+    IPV4_REGEX = re.compile("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$")
+
     def __init__(self, regex, target):
         self.regex = regex
         self.target = target
 
     def search(self, test):
         return bool(self.regex.search(test))
+
+    def targetIsIp4(self):
+        return bool(self.IPV4_REGEX.search(self.target))
 
     @classmethod
     def importRules(self, file):
