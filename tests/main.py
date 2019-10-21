@@ -2,12 +2,12 @@ from context import PythonDNS
 from PythonDNS.InterceptResolver import InterceptResolver
 from dnslib.server import DNSLogger, DNSServer
 import argparse, time
-import ptvsd
 
-ptvsd.enable_attach()
-ptvsd.wait_for_attach()
+#import ptvsd
+#ptvsd.enable_attach()
+#ptvsd.wait_for_attach()
 
-local_addr = "127.0.0.1"
+local_addr = "0.0.0.0"
 local_port = 53
 upstream_addr = "1.1.1.1"
 upstream_port = 53

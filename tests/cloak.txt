@@ -1,0 +1,14 @@
+
+# Example cloak file
+
+# Return bing for google
+^www.google.com$        www.bing.com
+
+# Return real cloudflare (1.1.1.1)
+^\d+.notcloudflare.net$     1.1.1.1
+
+# Earlier entry has precedence
+# www.pool.ntp.org is passthrough'd
+# Any other *.pool.ntp.org domains are directed to example.com
+^www\.pool\.ntp\.org$      www.pool.ntp.org
+.*\.pool\.ntp\.org$           example.com

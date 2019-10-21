@@ -1,0 +1,5 @@
+
+# Example blacklist file
+
+# Will blacklist www.microsoft.com by returning NXDOMAIN
+www.microsoft.com
